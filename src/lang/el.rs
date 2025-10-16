@@ -568,6 +568,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("input_source_1_tip", "Πηγή εισόδου 1"),
         ("input_source_2_tip", "Πηγή εισόδου 2"),
         ("Swap control-command key", "Εναλλαγή κουμπιών control-command"),
+        ("Swap option-command key", ""),
         ("swap-left-right-mouse", "Εναλλαγή αριστερό-δεξί κουμπί του ποντικιού"),
         ("2FA code", "κωδικός 2FA"),
         ("More", "Περισσότερα"),

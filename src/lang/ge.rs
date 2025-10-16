@@ -568,6 +568,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("input_source_1_tip", "შეყვანის წყარო 1"),
         ("input_source_2_tip", "შეყვანის წყარო 2"),
         ("Swap control-command key", "Ctrl და Command ღილაკების მნიშვნელობების გაცვლა"),
+        ("Swap option-command key", ""),
         ("swap-left-right-mouse", "მაუსის მარცხენა და მარჯვენა ღილაკების მნიშვნელობების გაცვლა"),
         ("2FA code", "ორფაქტორიანი ავთენტიფიკაციის კოდი"),
         ("More", "მეტი"),

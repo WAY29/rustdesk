@@ -568,6 +568,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("input_source_1_tip", "Ievades avots 1"),
         ("input_source_2_tip", "Ievades avots 2"),
         ("Swap control-command key", "Apmainīt vadības un komandas taustiņu"),
+        ("Swap option-command key", ""),
         ("swap-left-right-mouse", "Apmainīt kreiso un labo peles pogu"),
         ("2FA code", "2FA kods"),
         ("More", "Vairāk"),

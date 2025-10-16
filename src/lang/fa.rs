@@ -568,6 +568,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("input_source_1_tip", "منبع ورودی 1"),
         ("input_source_2_tip", "منبع ورودی 2"),
         ("Swap control-command key", "گرفتن چندین نمایشگر در حالت کاربر زیاد پشتیبانی نمی شود. اگر می‌خواهید چند نمایشگر را کنترل کنید، لطفاً پس از نصب دوباره امتحان کنید."),
+        ("Swap option-command key", ""),
         ("swap-left-right-mouse", "دکمه چپ و راست ماوس را عوض کنید"),
         ("2FA code", "کد ورود 2 مرحله ای"),
         ("More", "بیشتر"),

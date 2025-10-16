@@ -568,6 +568,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("input_source_1_tip", "1. bemeneti forrás"),
         ("input_source_2_tip", "2. bemeneti forrás"),
         ("Swap control-command key", "Vezérlő- és parancsgombok cseréje"),
+        ("Swap option-command key", ""),
         ("swap-left-right-mouse", "Bal és jobb egérgomb felcserélése"),
         ("2FA code", "2FA kód"),
         ("More", "Továbbiak"),

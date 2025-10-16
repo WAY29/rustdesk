@@ -739,11 +739,60 @@ impl<T: InvokeUiSession> Session<T> {
         }
     }
 
+    pub fn swap_option_cmd_key(&self, msg: &mut KeyEvent) {
+        let allow_swap_option_cmd = self.get_toggle_option("allow_swap_option_cmd".to_string());
+        if allow_swap_option_cmd {
+            if let Some(key_event::Union::ControlKey(ck)) = msg.union {
+                let ck = ck.enum_value_or_default();
+                let ck = match ck {
+                    ControlKey::Meta => ControlKey::Alt,
+                    ControlKey::Alt => ControlKey::Meta,
+                    _ => ck,
+                };
+                msg.set_control_key(ck);
+            }
+            msg.modifiers = msg
+                .modifiers
+                .iter()
+                .map(|ck| {
+                    let ck = ck.enum_value_or_default();
+                    let ck = match ck {
+                        ControlKey::Meta => ControlKey::Alt,
+                        ControlKey::Alt => ControlKey::Meta,
+                        _ => ck,
+                    };
+                    hbb_common::protobuf::EnumOrUnknown::new(ck)
+                })
+                .collect();
+
+            let code = msg.chr();
+            if code != 0 {
+                let mut peer = self.peer_platform().to_lowercase();
+                peer.retain(|c| !c.is_whitespace());
+
+                let key = match peer.as_str() {
+                    "macos" => {
+                        let key = rdev::macos_key_from_code(code as _);
+                        let key = match key {
+                            rdev::Key::MetaLeft => rdev::Key::Alt,
+                            rdev::Key::Alt => rdev::Key::MetaLeft,
+                            _ => key,
+                        };
+                        rdev::macos_keycode_from_key(key).unwrap_or_default() as _
+                    }
+                    _ => code,
+                };
+                msg.set_chr(key);
+            }
+        }
+    }
+
     pub fn send_key_event(&self, evt: &KeyEvent) {
         // mode: legacy(0), map(1), translate(2), auto(3)
 
         let mut msg = evt.clone();
         self.swap_modifier_key(&mut msg);
+        self.swap_option_cmd_key(&mut msg);
         let mut msg_out = Message::new();
         msg_out.set_key_event(msg);
         self.send(Data::Message(msg_out));
@@ -1841,6 +1890,25 @@ impl<T: InvokeUiSession> Interface for Session<T> {
                         ControlKey::Meta => ControlKey::Control,
                         ControlKey::RControl => ControlKey::Meta,
                         ControlKey::RWin => ControlKey::Control,
+                        _ => ck,
+                    };
+                    hbb_common::protobuf::EnumOrUnknown::new(ck)
+                })
+                .collect();
+        };
+    }
+
+    fn swap_option_cmd_mouse(&self, msg: &mut hbb_common::protos::message::MouseEvent) {
+        let allow_swap_option_cmd = self.get_toggle_option("allow_swap_option_cmd".to_string());
+        if allow_swap_option_cmd {
+            msg.modifiers = msg
+                .modifiers
+                .iter()
+                .map(|ck| {
+                    let ck = ck.enum_value_or_default();
+                    let ck = match ck {
+                        ControlKey::Meta => ControlKey::Alt,
+                        ControlKey::Alt => ControlKey::Meta,
                         _ => ck,
                     };
                     hbb_common::protobuf::EnumOrUnknown::new(ck)
