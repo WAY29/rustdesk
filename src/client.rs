@@ -2111,8 +2111,6 @@ impl LoginConfigHandler {
             config.show_quality_monitor.v = !config.show_quality_monitor.v;
         } else if name == "allow_swap_key" {
             config.allow_swap_key.v = !config.allow_swap_key.v;
-        } else if name == "allow_swap_option_cmd" {
-            config.allow_swap_option_cmd.v = !config.allow_swap_option_cmd.v;
         } else if name == "view-only" {
             config.view_only.v = !config.view_only.v;
             let f = |b: bool| {
@@ -2324,8 +2322,6 @@ impl LoginConfigHandler {
             self.config.show_quality_monitor.v
         } else if name == "allow_swap_key" {
             self.config.allow_swap_key.v
-        } else if name == "allow_swap_option_cmd" {
-            self.config.allow_swap_option_cmd.v
         } else if name == "view-only" {
             self.config.view_only.v
         } else if name == "show-my-cursor" {
