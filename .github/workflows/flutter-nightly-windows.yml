@@ -1,4 +1,4 @@
-name: Flutter Nightly Build
+name: Flutter Nightly Build (Windows Only)
 
 on:
   schedule:
@@ -14,24 +14,13 @@ on:
         type: string
         default: "nightly"
         description: "Upload tag"
-      build-target:
-        type: choice
-        default: "all"
-        description: "Build target platform"
-        options:
-          - all
-          - windows
-          - macos
-          - linux
-          - android
-          - ios
-          - web
 
 jobs:
-  run-flutter-nightly-build:
+  run-flutter-nightly-windows-build:
     uses: ./.github/workflows/flutter-build.yml
     secrets: inherit
     with:
       upload-artifact: ${{ inputs.upload-artifact || true }}
       upload-tag: ${{ inputs.upload-tag || 'nightly' }}
-      build-target: ${{ inputs.build-target || 'all' }}
+      build-target: "windows"
+
